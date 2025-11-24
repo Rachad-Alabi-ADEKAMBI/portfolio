@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Hello Baby! - Suivi de Grossesse</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            rose: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #fef3f8 0%, #fff5f7 50%, #f8f4ff 100%);
+      min-height: 100vh;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 32px rgba(251, 113, 133, 0.12);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #f43f5e 0%, #ec4899 50%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .input-modern {
+      transition: all 0.3s ease;
+    }
+    
+    .input-modern:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(251, 113, 133, 0.2);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(251, 113, 133, 0.3);
+    }
+    
+    .tab-active {
+      background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
+      color: white;
+    }
+    
+    .consultation-item {
+      transition: all 0.3s ease;
+    }
+    
+    .consultation-item:hover {
+      transform: translateX(4px);
+    }
+    
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity 0.3s ease;
+    }
+    
+    .fade-enter-from, .fade-leave-to {
+      opacity: 0;
+    }
+    
+    .slide-up-enter-active, .slide-up-leave-active {
+      transition: all 0.3s ease;
+    }
+    
+    .slide-up-enter-from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .slide-up-leave-to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    .heart-icon {
+      animation: heartbeat 2s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      10% { transform: scale(1.1); }
+      20% { transform: scale(1); }
+    }
+
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="min-h-screen py-6 px-4">
+    <!-- Header -->
+    <header class="text-center mb-8 float-animation">
+      <div class="inline-flex items-center justify-center mb-3">
+        <svg class="heart-icon w-12 h-12 text-rose-500" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+      <h1 class="text-4xl font-bold gradient-text mb-2">Hello Baby!</h1>
+      <p class="text-gray-600 text-sm">Votre compagnon de grossesse</p>
+    </header>
+
+    <!-- Tabs -->
+    <div class="glass-card rounded-full p-1 mb-6 max-w-md mx-auto">
+      <div class="grid grid-cols-2 gap-1">
+        <button 
+          @click="activeTab = 'pregnancy'"
+          :class="activeTab === 'pregnancy' ? 'tab-active' : 'bg-transparent text-gray-600'"
+          class="py-3 px-6 rounded-full font-semibold text-sm transition-all duration-300">
+          Grossesse
+        </button>
+        <button 
+          @click="activeTab = 'cycle'"
+          :class="activeTab === 'cycle' ? 'tab-active' : 'bg-transparent text-gray-600'"
+          class="py-3 px-6 rounded-full font-semibold text-sm transition-all duration-300">
+          Cycle
+        </button>
+      </div>
+    </div>
+
+    <!-- Pregnancy Tab -->
+    <transition name="slide-up" mode="out-in">
+      <div v-if="activeTab === 'pregnancy'" key="pregnancy">
+        <div class="glass-card rounded-3xl p-6 max-w-md mx-auto mb-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-4">Calculer ma grossesse</h2>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Date des dernières règles</label>
+              <input 
+                v-model="lastPeriodDate" 
+                type="date" 
+                class="input-modern w-full px-4 py-3 rounded-xl border-2 border-rose-100 focus:border-rose-300 focus:outline-none bg-white">
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Durée du cycle (jours)</label>
+              <input 
+                v-model.number="cycleLength" 
+                type="number" 
+                min="21" 
+                max="35" 
+                class="input-modern w-full px-4 py-3 rounded-xl border-2 border-rose-100 focus:border-rose-300 focus:outline-none bg-white">
+            </div>
+            
+            <button 
+              @click="calculatePregnancy" 
+              class="btn-primary w-full py-4 rounded-xl text-white font-semibold shadow-lg">
+              Calculer
+            </button>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <transition name="fade">
+          <div v-if="pregnancyResults" class="space-y-4 max-w-md mx-auto">
+            <!-- Due Date Card -->
+            <div class="glass-card rounded-3xl p-6">
+              <div class="flex items-start space-x-4">
+                <div class="bg-gradient-to-br from-rose-500 to-pink-600 rounded-2xl p-3 flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg font-bold text-gray-800 mb-1">Date d'accouchement</h3>
+                  <p class="text-2xl font-bold gradient-text">{{ pregnancyResults.dueDate }}</p>
+                  <p class="text-xs text-gray-500 mt-1">Précision: ±2 jours</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Current Week Card -->
+            <div class="glass-card rounded-3xl p-6">
+              <div class="flex items-start space-x-4">
+                <div class="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-3 flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg font-bold text-gray-800 mb-1">Semaine actuelle</h3>
+                  <p class="text-2xl font-bold gradient-text">Semaine {{ pregnancyResults.currentWeek }}</p>
+                  <div class="mt-2 bg-rose-50 rounded-full h-2">
+                    <div 
+                      class="bg-gradient-to-r from-rose-500 to-pink-600 h-2 rounded-full transition-all duration-500"
+                      :style="{width: (pregnancyResults.currentWeek / 40 * 100) + '%'}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Consultations -->
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="text-lg font-bold text-gray-800 mb-4">Consultations prénatales</h3>
+              <div class="space-y-3">
+                <div 
+                  v-for="(consultation, index) in pregnancyResults.consultations" 
+                  :key="index"
+                  class="consultation-item flex items-start space-x-3 p-3 rounded-xl bg-gradient-to-r from-rose-50 to-pink-50">
+                  <div class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center text-white text-sm font-bold">
+                    {{ index + 1 }}
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="font-semibold text-gray-800 text-sm">{{ consultation.name }}</p>
+                    <p class="text-xs text-gray-600 mt-1">{{ consultation.date }}</p>
+                    <p class="text-xs text-rose-600 mt-1">Semaine {{ consultation.week }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </div>
+
+      <!-- Cycle Tab -->
+      <div v-else key="cycle">
+        <div class="glass-card rounded-3xl p-6 max-w-md mx-auto mb-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-4">Calculer mon cycle</h2>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Date des dernières règles</label>
+              <input 
+                v-model="cyclePeriodDate" 
+                type="date" 
+                class="input-modern w-full px-4 py-3 rounded-xl border-2 border-rose-100 focus:border-rose-300 focus:outline-none bg-white">
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Durée du cycle (jours)</label>
+              <input 
+                v-model.number="cycleDuration" 
+                type="number" 
+                min="21" 
+                max="35" 
+                class="input-modern w-full px-4 py-3 rounded-xl border-2 border-rose-100 focus:border-rose-300 focus:outline-none bg-white">
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Durée des règles (jours)</label>
+              <input 
+                v-model.number="periodDuration" 
+                type="number" 
+                min="3" 
+                max="7" 
+                class="input-modern w-full px-4 py-3 rounded-xl border-2 border-rose-100 focus:border-rose-300 focus:outline-none bg-white">
+            </div>
+            
+            <button 
+              @click="calculateCycle" 
+              class="btn-primary w-full py-4 rounded-xl text-white font-semibold shadow-lg">
+              Calculer
+            </button>
+          </div>
+        </div>
+
+        <!-- Cycle Results -->
+        <transition name="fade">
+          <div v-if="cycleResults" class="space-y-4 max-w-md mx-auto">
+            <!-- Next Period Card -->
+            <div class="glass-card rounded-3xl p-6">
+              <div class="flex items-start space-x-4">
+                <div class="bg-gradient-to-br from-rose-500 to-pink-600 rounded-2xl p-3 flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg font-bold text-gray-800 mb-1">Prochaines règles</h3>
+                  <p class="text-2xl font-bold gradient-text">{{ cycleResults.nextPeriod }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ovulation Card -->
+            <div class="glass-card rounded-3xl p-6">
+              <div class="flex items-start space-x-4">
+                <div class="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-3 flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg font-bold text-gray-800 mb-1">Ovulation</h3>
+                  <p class="text-xl font-bold gradient-text mb-2">{{ cycleResults.ovulation }}</p>
+                  <div class="bg-purple-50 rounded-xl p-3">
+                    <p class="text-xs text-purple-800 font-medium">Période fertile</p>
+                    <p class="text-xs text-purple-600 mt-1">{{ cycleResults.fertileStart }} - {{ cycleResults.fertileEnd }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cycle Phases -->
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="text-lg font-bold text-gray-800 mb-4">Phases du cycle</h3>
+              <div class="space-y-4">
+                <div class="p-4 rounded-xl bg-gradient-to-r from-red-50 to-rose-50">
+                  <div class="flex items-center space-x-3 mb-2">
+                    <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                    <h4 class="font-bold text-gray-800 text-sm">Phase menstruelle</h4>
+                  </div>
+                  <p class="text-xs text-gray-600 leading-relaxed">Jours 1-{{ periodDuration }}: Les règles marquent le début du cycle. L'endomètre se détache et s'élimine.</p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-gradient-to-r from-pink-50 to-purple-50">
+                  <div class="flex items-center space-x-3 mb-2">
+                    <div class="w-3 h-3 rounded-full bg-pink-500"></div>
+                    <h4 class="font-bold text-gray-800 text-sm">Phase folliculaire</h4>
+                  </div>
+                  <p class="text-xs text-gray-600 leading-relaxed">Jours {{ periodDuration + 1 }}-14: Les follicules ovariens se développent. L'endomètre s'épaissit progressivement sous l'effet des œstrogènes.</p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-gradient-to-r from-purple-50 to-pink-50">
+                  <div class="flex items-center space-x-3 mb-2">
+                    <div class="w-3 h-3 rounded-full bg-purple-500"></div>
+                    <h4 class="font-bold text-gray-800 text-sm">Ovulation</h4>
+                  </div>
+                  <p class="text-xs text-gray-600 leading-relaxed">Jour 14 environ: Un ovule mature est libéré. C'est la période la plus fertile du cycle, idéale pour la conception.</p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50">
+                  <div class="flex items-center space-x-3 mb-2">
+                    <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                    <h4 class="font-bold text-gray-800 text-sm">Phase lutéale</h4>
+                  </div>
+                  <p class="text-xs text-gray-600 leading-relaxed">Jours 15-{{ cycleDuration }}: Le corps jaune sécrète de la progestérone pour préparer l'utérus à une éventuelle grossesse. Sans fécondation, le cycle recommence.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </div>
+    </transition>
+
+    <!-- Footer -->
+    <footer class="text-center mt-8 pb-6">
+      <p class="text-xs text-gray-500">Les informations sont à titre indicatif. Consultez toujours votre médecin.</p>
+    </footer>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          activeTab: 'pregnancy',
+          // Pregnancy data
+          lastPeriodDate: '',
+          cycleLength: 28,
+          pregnancyResults: null,
+          // Cycle data
+          cyclePeriodDate: '',
+          cycleDuration: 28,
+          periodDuration: 5,
+          cycleResults: null
+        }
+      },
+      methods: {
+        calculatePregnancy() {
+          if (!this.lastPeriodDate) {
+            alert('Veuillez entrer la date de vos dernières règles');
+            return;
+          }
+
+          const lmpDate = new Date(this.lastPeriodDate);
+          
+          // Calculate due date (280 days from LMP)
+          const dueDate = new Date(lmpDate);
+          dueDate.setDate(dueDate.getDate() + 280);
+          
+          // Calculate current week
+          const today = new Date();
+          const diffTime = today - lmpDate;
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          const currentWeek = Math.floor(diffDays / 7);
+
+          // Calculate consultations
+          const consultations = [
+            { week: 8, name: '1ère consultation' },
+            { week: 12, name: '2ème consultation' },
+            { week: 16, name: '3ème consultation' },
+            { week: 20, name: '4ème consultation (échographie)' },
+            { week: 24, name: '5ème consultation' },
+            { week: 28, name: '6ème consultation' },
+            { week: 32, name: '7ème consultation' }
+          ].map(c => {
+            const consultDate = new Date(lmpDate);
+            consultDate.setDate(consultDate.getDate() + (c.week * 7));
+            return {
+              ...c,
+              date: this.formatDate(consultDate)
+            };
+          });
+
+          this.pregnancyResults = {
+            dueDate: this.formatDate(dueDate),
+            currentWeek: Math.max(0, Math.min(40, currentWeek)),
+            consultations
+          };
+        },
+
+        calculateCycle() {
+          if (!this.cyclePeriodDate) {
+            alert('Veuillez entrer la date de vos dernières règles');
+            return;
+          }
+
+          const periodDate = new Date(this.cyclePeriodDate);
+          
+          // Next period
+          const nextPeriod = new Date(periodDate);
+          nextPeriod.setDate(nextPeriod.getDate() + this.cycleDuration);
+          
+          // Ovulation (typically 14 days before next period)
+          const ovulationDate = new Date(nextPeriod);
+          ovulationDate.setDate(ovulationDate.getDate() - 14);
+          
+          // Fertile window (5 days before ovulation to 1 day after)
+          const fertileStart = new Date(ovulationDate);
+          fertileStart.setDate(fertileStart.getDate() - 5);
+          
+          const fertileEnd = new Date(ovulationDate);
+          fertileEnd.setDate(fertileEnd.getDate() + 1);
+
+          this.cycleResults = {
+            nextPeriod: this.formatDate(nextPeriod),
+            ovulation: this.formatDate(ovulationDate),
+            fertileStart: this.formatDate(fertileStart),
+            fertileEnd: this.formatDate(fertileEnd)
+          };
+        },
+
+        formatDate(date) {
+          return date.toLocaleDateString('fr-FR', { 
+            day: '2-digit', 
+            month: 'long', 
+            year: 'numeric' 
+          });
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

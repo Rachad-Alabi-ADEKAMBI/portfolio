@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rachad Alabi Adekambi - Full-Stack Developer & Consultant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span>RA</span>
+            </div>
+            
+            <!-- Menu centered -->
+            <nav class="nav" id="nav">
+                <a href="#home" data-translate="nav_home">Accueil</a>
+                <a href="#about" data-translate="nav_about">À propos</a>
+                <a href="#services" data-translate="nav_services">Services</a>
+                <a href="#projects" data-translate="nav_projects">Projets</a>
+                <a href="#contact" data-translate="nav_contact">Contact</a>
+            </nav>
+
+            <!-- Right section: language selector and mobile menu button -->
+            <div class="header-right">
+                <!-- Language selector with emoji flags centered in mobile -->
+                <div class="language-selector" id="langSelector">
+                    <button class="lang-btn active" data-lang="fr" title="Français">🇫🇷</button>
+                    <button class="lang-btn" data-lang="en" title="English">🇬🇧</button>
+                    <button class="lang-btn" data-lang="es" title="Español">🇪🇸</button>
+                </div>
+
+                <!-- Improved mobile menu button with hamburger icon -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <!-- Profile photo -->
+                <div class="profile-photo-container">
+                    <img src="public/profil_photo.jpeg" alt="Rachad Alabi Adekambi" class="profile-photo">
+                </div>
+                <h1 class="hero-title">
+                    <span data-translate="hero_title">Rachad Alabi ADEKAMBI</span>
+                </h1>
+                <h2 class="hero-subtitle" data-translate="hero_subtitle">
+                    Full-Stack Developer & Consultant
+                </h2>
+                <p class="hero-description" data-translate="hero_description">
+                    Aidez votre entreprise à créer des solutions web efficaces et évolutives
+                </p>
+                <a href="#contact" class="cta-btn" data-translate="hero_cta">
+                    Réserver une consultation gratuite
+                </a>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">6+</span>
+                        <span class="stat-label" data-translate="stat_years">Années d'expérience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">80+</span>
+                        <span class="stat-label" data-translate="stat_projects">Projets complétés</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label" data-translate="stat_satisfaction">Satisfaction client</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="about_title">À propos de moi</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="about-content">
+                <!-- Two-column layout: text on left, tech stack on right -->
+                <div class="about-text">
+                    <p data-translate="about_text1">
+                        Bonjour, je m'appelle Rachad Alabi ADEKAMBI, développeur full-stack freelance avec 6 ans d'expérience. Je conçois et développe des 
+                        applications web et mobiles en utilisant Laravel, Vue.js et Flutter.
+                         Avec plus de 80 projets réalisés sur
+                         ComeUp et Upwork, j'ai accompagné de nombreux clients dans la création d'applications sur mesure, intuitives et fiables.
+                                         </p> 
+                      <p data-translate="about_text2">
+                             Chaque projet est pour moi l'occasion de combiner expertise technique et créativité afin de répondre parfaitement aux besoins de mes clients. Si vous avez un projet à concrétiser, n'hésitez pas à me contacter pour en discuter et voir comment nous pouvons le réaliser ensemble.
+
+                      </p>
+
+                </div>
+
+                <!-- Tech stack moved to the right column -->
+                <div class="about-tech-column">
+                    <div class="tech-stack">
+                        <div class="tech-category">
+                            <h4>Langages</h4>
+                            <div class="tech-items">
+                                <span class="tech-item"><i class="fab fa-php"></i> PHP</span>
+                                <span class="tech-item"><i class="fab fa-js"></i> JavaScript</span>
+                                <span class="tech-item"><i class="fab fa-python"></i> Python</span>
+                                <span class="tech-item"><i class="fas fa-code"></i> Dart</span>
+                            </div>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Frameworks & CMS</h4>
+                            <div class="tech-items">
+                                <span class="tech-item"><i class="fas fa-cube"></i> Laravel</span>
+                                <span class="tech-item"><i class="fab fa-vuejs"></i> Vue.js</span>
+                                       <span class="tech-item"><i class="fas fa-mobile-alt"></i> Flutter</span>
+                                <span class="tech-item"><i class="fab fa-wordpress"></i> WordPress </span>
+                         
+                            </div>
+                        </div>
+                        <div class="tech-category">
+                            <h4>Outils</h4>
+                            <div class="tech-items">
+                                <span class="tech-item"><i class="fab fa-git"></i> Git</span>
+                                <span class="tech-item"><i class="fab fa-docker"></i> Docker</span>
+                                <span class="tech-item"><i class="fas fa-database"></i> MySQL</span>
+                                <span class="tech-item"><i class="fab fa-aws"></i> AWS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/rachad-alabi-adekambi-2753a21b5/" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/rachad-Alabi-ADEKAMBI" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://wa.me/22941597642" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="services_title">Mes Services</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 data-translate="service1_title">Développement Web & Mobile</h3>
+                    <p data-translate="service1_description">
+                        Applications Web & Mobiles sur mesure avec Laravel, Vue.js et Flutter
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fab fa-wordpress"></i>
+                    </div>
+                    <h3 data-translate="service2_title">WordPress & E-commerce</h3>
+                    <p data-translate="service2_description">
+                        Création de sites WordPress et boutiques en ligne performantes
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3 data-translate="service3_title">Intégration API</h3>
+                    <p data-translate="service3_description">
+                        Intégration de services tiers et développement d'API REST
+                    </p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 data-translate="service4_title">Optimisation & Maintenance</h3>
+                    <p data-translate="service4_description">
+                        Amélioration des performances et maintenance de vos applications
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats/Performance Section -->
+    <section class="performance" id="performance">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="performance_title">Performance & Résultats</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="performance-grid-enhanced">
+                <div class="performance-card">
+                    <div class="platform-header">
+                        <h3>ComeUp</h3>
+                        <span class="platform-badge">Top Rated</span>
+                    </div>
+                    <div class="stats-image-container">
+                        <img src="public/comeup.PNG" alt="ComeUp Statistics" class="stats-image">
+                    </div>
+                    <div class="platform-stats-grid">
+                        <div class="stat-detail">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-text">
+                                <span class="label" data-translate="perf_positive_reviews">Avis positifs</span>
+                                <span class="value">65</span>
+                            </div>
+                        </div>
+                        <div class="stat-detail">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-text">
+                                <span class="label" data-translate="perf_acceptance_rate">Taux d'acceptation</span>
+                                <span class="value">100%</span>
+                            </div>
+                        </div>
+                        <div class="stat-detail">
+                            <div class="stat-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="stat-text">
+                                <span class="label" data-translate="perf_completion_rate">Taux de complétion</span>
+                                <span class="value">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="projects_title">Mes Projets</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="public/easy_market.PNG" alt="E-commerce Store">
+                    </div>
+                    <div class="project-info">
+                        <h3 data-translate="project1_title">Easy Market</h3>
+                        <p data-translate="project1_description">Gestionnaire de Stock  & Comptabilité interne des petites et moyenne entreprises</p>
+                        <div class="project-tech">
+                            <span class="tech-badge"><i class="fas fa-cube"></i> Laravel</span>
+                            <span class="tech-badge"><i class="fab fa-vuejs"></i> Vue.js</span>
+                              <span class="tech-badge"><i class="fab fa-vuejs"></i> Flutter</span>
+                            <span class="tech-badge"><i class="fas fa-database"></i> MySQL</span>
+                        </div>
+                        <a href="http://easy-market.xo.je/" class="project-btn" data-translate="project_btn">Voir le Projet</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="public/lacavedesclubs.PNG" alt="Site Corporate">
+                    </div>
+                    <div class="project-info">
+                        <h3 data-translate="project2_title">La Cave des Clubs</h3>
+                        <p data-translate="project2_description">Site vitrine professionnel avec portfolio et formulaires de contact intégrés</p>
+                        <div class="project-tech">
+                            <span class="tech-badge"><i class="fab fa-wordpress"></i> WordPress</span>
+                            <span class="tech-badge"><i class="fas fa-layer-group"></i> Elementor</span>
+                            <span class="tech-badge"><i class="fas fa-search"></i> SEO</span>
+                        </div>
+                        <a href="https://lacavedesclubs.com/" class="project-btn" data-translate="project_btn">Voir le Projet</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="public/hello-baby.PNG" alt="Apllication de suivi de grossesse et de cycle">
+                    </div>
+                    <div class="project-info">
+                        <h3 data-translate="project3_title">Hello Baby !</h3>
+                        <p data-translate="project3_description">Application de Suivi de grossesse et de cycle menstruel</p>
+                        <div class="project-tech">
+                            <span class="tech-badge"><i class="fab fa-flutter"></i> Flutter</span>
+                            <span class="tech-badge"><i class="fab fa-vuejs"></i> Vuejs</span>
+                        </div>
+                        <a href="https://rachad-alabi-adekambi.github.io/hello-baby/" class="project-btn" data-translate="project_btn">Voir le Projet</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="public/sager-market.PNG" alt="CMS Personnalisé">
+                    </div>
+                    <div class="project-info">
+                        <h3 data-translate="project4_title">Sager Market</h3>
+                        <p data-translate="project4_description">Application de gestion de stock et de compatbilité interne personnalisé</p>
+                        <div class="project-tech">
+                            <span class="tech-badge"><i class="fas fa-cube"></i> Laravel</span>
+                            <span class="tech-badge"><i class="fab fa-vuejs"></i> Vue.js</span>
+                            <span class="tech-badge"><i class="fas fa-database"></i> MySQL</span>
+                        </div>
+                        <a href="https://sager-market.com/" class="project-btn" data-translate="project_btn">Voir le Projet</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="public/ampay.PNG" alt="Marketplace de devises monétaire">
+                    </div>
+                    <div class="project-info">
+                        <h3 data-translate="project5_title">AmPay</h3>
+                        <p data-translate="project5_description">
+                            Plateforme internationale de mise en relation entre échangeurs et demandeurs de devises monétaire 
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge"><i class="fab fa-vuejs"></i> Vue.js</span>
+                            <span class="tech-badge"><i class="fab fa-php"></i> PHP</span>
+                        </div>
+                        <a href="https://ampay.xo.je/" class="project-btn" data-translate="project_btn">Voir le Projet</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="public/sefarpay.PNG" alt="Plugin de paiement SefarPay">
+                    </div>
+                    <div class="project-info">
+                        <h3 data-translate="project6_title">SefarPay</h3>
+                        <p data-translate="project6_description">Plugin personnalisé wordpress pour les paiements au Maghred</p>
+                        <div class="project-tech">
+                            <span class="tech-badge"><i class="fab fa-vuejs"></i> Vue.js</span>
+                            <span class="tech-badge"><i class="fab fa-wordpress"></i> Wordpress</span>
+                        </div>
+                        <a href="https://github.com/Rachad-Alabi-ADEKAMBI/sefarpay" class="project-btn" data-translate="project_btn">Voir le Projet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Satisfaits Section -->
+    <section class="clients" id="clients">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="clients_title">Clients Satisfaits</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text" data-translate="testimonial1_text">
+                        "Rachad est très professionnel et à l'écoute. Il a livré notre site e-commerce à temps et au-delà de nos attentes."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong data-translate="testimonial1_name">Marie Albert</strong>
+                        <span data-translate="testimonial1_role">Directrice E-commerce</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text" data-translate="testimonial2_text">
+                        "Excellent travail sur la migration de notre site WordPress. Rachad a rendu le processus transparent et sans tracas."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong data-translate="testimonial2_name">Jean Martin</strong>
+                        <span data-translate="testimonial2_role">Propriétaire PME</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text" data-translate="testimonial3_text">
+                        "Solution API bien pensée et documentation impeccable. Notre équipe n'a pas eu de difficultés à l'intégrer."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong data-translate="testimonial3_name">Sophie Bernard</strong>
+                        <span data-translate="testimonial3_role">CTO Startup Tech</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="contact_title">Travaillons Ensemble!</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle" data-translate="contact_subtitle">
+                    Réservez votre consultation gratuite et discutons de votre prochain projet
+                </p>
+            </div>
+
+            <div class="contact-content">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" data-translate="form_name">Nom</label>
+                        <input type="text" id="name" name="name" data-placeholder-key="form_name_placeholder" placeholder="Votre nom complet" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" data-translate="form_email">Email</label>
+                        <input type="email" id="email" name="email" data-placeholder-key="form_email_placeholder" placeholder="votre.email@exemple.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" data-translate="form_message">Message</label>
+                        <textarea id="message" name="message" rows="5" data-placeholder-key="form_message_placeholder" placeholder="Parlez moi un peu de votre projet" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" data-translate="form_submit">
+                        Envoyer
+                    </button>
+                </form>
+
+                <div class="contact-info-card">
+                    <h3 data-translate="contact_info_title">Informations de contact</h3>
+                    <div class="contact-details">
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong data-translate="contact_email">Email</strong>
+                                <p>adekambirachad@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong data-translate="contact_phone">Téléphone</strong>
+                                <p>+229 0141597642</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong data-translate="contact_location">Localisation</strong>
+                                <p>Bénin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/rachad-alabi-adekambi-2753a21b5/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/rachad-Alabi-ADEKAMBI" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://wa.me/22941597642" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                <p class="copyright">
+                    &copy; 2025 Rachad Alabi Adekambi. <span data-translate="footer_rights">Tous droits réservés</span>.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
